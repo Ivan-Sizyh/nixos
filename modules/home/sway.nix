@@ -39,7 +39,7 @@ in
       # No gaps, no borders, no title bars
       gaps.inner = 0;
       gaps.outer = 0;
-      window.border = 0;
+      window.border = 2;
       floating.border = 0;
       window.titlebar = false;
       floating.titlebar = false;
@@ -112,10 +112,6 @@ in
         # Browser
         "${mod}+b" = "exec librewolf";
 
-        # Mirror output (pick which output to mirror)
-        "${mod}+m" = "exec wl-mirror $(swaymsg -t get_outputs | jq -r '.[].name' | head -n 2 | tail -n 1)";
-        "${mod}+Shift+m" = "exec pkill wl-mirror";
-
         # Layout
         "${mod}+e" = "layout toggle split";
         "${mod}+s" = "layout stacking";
@@ -176,6 +172,11 @@ in
     };
 
     extraConfig = ''
+      smart_borders on
+      client.focused ${theme.accent} ${theme.accent} ${theme.bg} ${theme.accent} ${theme.accent}
+      client.focused_inactive ${theme.bg} ${theme.bg} ${theme.inactive} ${theme.bg} ${theme.bg}
+      client.unfocused ${theme.bg} ${theme.bg} ${theme.inactive} ${theme.bg} ${theme.bg}
+
       default_orientation horizontal
       focus_on_window_activation focus
       seat seat0 xcursor_theme Bibata-Modern-Classic 24
@@ -193,9 +194,6 @@ in
 
       # wdisplays float
       for_window [app_id="wdisplays"] floating enable
-
-      # wl-mirror float
-      for_window [app_id="wl-mirror"] floating enable, resize set 640 360
 
       # fsel launcher float
       for_window [app_id="foot" title="fsel"] floating enable, resize set 900 500

@@ -12,7 +12,7 @@ in
         position = "top";
         height = 30;
         modules-left = [ "sway/workspaces" ];
-        modules-right = [ "tray" "pulseaudio" "sway/language" "clock" ];
+        modules-right = [ "tray" "custom/displays" "pulseaudio" "sway/language" "clock" ];
 
         "sway/workspaces" = {
           format = "{name}";
@@ -22,6 +22,12 @@ in
           format = "{}";
           format-en = "EN";
           format-ru = "RU";
+        };
+
+        "custom/displays" = {
+          format = "MON";
+          tooltip = false;
+          on-click = "exec wdisplays";
         };
 
         pulseaudio = {
@@ -63,6 +69,11 @@ in
 
       #tray {
         padding: 0 10px;
+      }
+
+      #custom-displays {
+        padding: 0 10px;
+        color: ${theme.fg};
       }
 
       #pulseaudio {

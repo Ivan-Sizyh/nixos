@@ -22,7 +22,6 @@
     duperemove
     pavucontrol
     wdisplays
-    wl-mirror
     wtype
     thunar
     stow
