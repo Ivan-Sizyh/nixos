@@ -34,6 +34,9 @@ in
         "*" = {
           mode = "1920x1080@144Hz";
         };
+        "HDMI-A-1" = {
+          disable = "";
+        };
       };
 
       # No gaps, no borders, no title bars
@@ -178,6 +181,12 @@ in
       client.unfocused ${theme.bg} ${theme.bg} ${theme.inactive} ${theme.bg} ${theme.bg}
 
       default_orientation horizontal
+
+      # Steam: float small windows (friends, settings, dialogs)
+      for_window [class="Steam" title="^Friends"] floating enable
+      for_window [class="Steam" title="^Steam Settings"] floating enable
+      for_window [class="Steam" title="^Screenshot"] floating enable
+      for_window [class="Steam" title="^Steam - News"] floating enable
       focus_on_window_activation focus
       seat seat0 xcursor_theme Bibata-Modern-Classic 24
 
