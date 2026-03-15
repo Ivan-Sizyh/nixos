@@ -20,7 +20,7 @@
   networking.networkmanager.enable = true;
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
-  time.timeZone = "Etc/GMT-6";
+  time.timeZone = "Etc/GMT-5";
 
   # Nix settings
   nix.settings = {

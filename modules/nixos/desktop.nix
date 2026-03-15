@@ -7,11 +7,21 @@
     options = "caps:toggle,grp:caps_toggle";
   };
 
+  programs.dconf.enable = true;
+
   # Portals (needed by waybar, screen sharing, etc.)
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = "*";
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config = {
+      common.default = [ "gtk" ];
+      sway = {
+        default = [ "gtk" "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+      };
+    };
   };
 
   # Login manager

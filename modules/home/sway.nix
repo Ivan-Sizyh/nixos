@@ -85,7 +85,7 @@ in
 
         # Window management
         "${mod}+w" = "kill";
-        "${mod}+f" = "fullscreen toggle";
+        "${mod}+f" = "fullscreen global";
         "${mod}+t" = "floating toggle";
         "${mod}+Shift+t" = "focus mode_toggle";
 
@@ -111,6 +111,10 @@ in
 
         # Browser
         "${mod}+b" = "exec librewolf";
+
+        # Mirror output (pick which output to mirror)
+        "${mod}+m" = "exec wl-mirror $(swaymsg -t get_outputs | jq -r '.[].name' | head -n 2 | tail -n 1)";
+        "${mod}+Shift+m" = "exec pkill wl-mirror";
 
         # Layout
         "${mod}+e" = "layout toggle split";
@@ -176,11 +180,22 @@ in
       focus_on_window_activation focus
       seat seat0 xcursor_theme Bibata-Modern-Classic 24
 
+      # Focus Vesktop when activated from tray
+      for_window [app_id="vesktop"] focus
+      for_window [class="vesktop"] focus
+      for_window [class="Vesktop"] focus
+
       # Firefox PiP
       for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable
 
-      # Pulsemixer float
-      for_window [app_id="foot" title="pulsemixer"] floating enable, resize set 800 400
+      # pavucontrol float
+      for_window [app_id="org.pulseaudio.pavucontrol"] floating enable, resize set 900 600
+
+      # wdisplays float
+      for_window [app_id="wdisplays"] floating enable
+
+      # wl-mirror float
+      for_window [app_id="wl-mirror"] floating enable, resize set 640 360
 
       # fsel launcher float
       for_window [app_id="foot" title="fsel"] floating enable, resize set 900 500

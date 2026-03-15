@@ -12,7 +12,7 @@ in
         position = "top";
         height = 30;
         modules-left = [ "sway/workspaces" ];
-        modules-right = [ "pulseaudio" "sway/language" "clock" ];
+        modules-right = [ "tray" "pulseaudio" "sway/language" "clock" ];
 
         "sway/workspaces" = {
           format = "{name}";
@@ -27,7 +27,7 @@ in
         pulseaudio = {
           format = "{volume}%";
           format-muted = "muted";
-          on-click = "exec foot --title pulsemixer pulsemixer";
+          on-click = "exec pavucontrol";
         };
 
         clock = {
@@ -59,6 +59,10 @@ in
       #workspaces button.focused {
         color: ${theme.bg};
         background-color: ${theme.accent};
+      }
+
+      #tray {
+        padding: 0 10px;
       }
 
       #pulseaudio {

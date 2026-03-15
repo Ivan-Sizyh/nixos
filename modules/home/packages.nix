@@ -20,7 +20,9 @@
     mako
     compsize
     duperemove
-    pulsemixer
+    pavucontrol
+    wdisplays
+    wl-mirror
     wtype
     thunar
     stow

@@ -26,6 +26,12 @@ in
     gtk-theme = "Adwaita-dark";
   };
 
+  xdg.configFile."xdg-desktop-portal-wlr/config".text = ''
+    [screencast]
+    chooser_type = simple
+    chooser_cmd = slurp -f %o -or
+  '';
+
   services.mako = {
     enable = true;
     settings.default-timeout = 5000;
