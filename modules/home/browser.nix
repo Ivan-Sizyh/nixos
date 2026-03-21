@@ -27,11 +27,8 @@
         "ui.systemUsesDarkTheme" = 1;
 
         # Performance
-        "gfx.webrender.all" = true;
-        "media.ffmpeg.vaapi.enabled" = true;
-        "widget.dmabuf.force-enabled" = true;
         "browser.cache.disk.enable" = true;
-        "browser.cache.memory.capacity" = 524288; # 512MB
+        "browser.cache.memory.capacity" = 65536; # 64MB
         "network.http.max-persistent-connections-per-server" = 10;
         "network.http.max-connections" = 1800;
         "network.dns.disablePrefetchFromHTTPS" = false;
