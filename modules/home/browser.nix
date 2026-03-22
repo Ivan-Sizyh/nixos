@@ -8,14 +8,6 @@
     profiles.default = {
       isDefault = true;
       path = "52924dgn.default";
-      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
-        bitwarden
-        darkreader
-        vimium
-        stylus
-        sidebery
-      ];
       settings = {
         # Sidebar on left
         "sidebar.position_start" = true;

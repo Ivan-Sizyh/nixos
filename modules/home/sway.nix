@@ -34,7 +34,6 @@ in
       bindkeysToCode = true;
       modifier = "Mod4";
       terminal = "foot";
-      menu = "foot -e fsel";
 
       fonts = {
         names = [ theme.font ];
@@ -90,7 +89,6 @@ in
         # Apps
         "${mod}+Return" = "exec foot";
         "${mod}+Escape" = "exec ${menus.power}";
-        "${mod}+space" = enRun "foot --title fsel -e fsel";
         "${mod}+Alt+l" = enRun "swaylock";
 
         # Volume (wob)
@@ -224,9 +222,6 @@ in
 
       # wdisplays float
       for_window [app_id="wdisplays"] floating enable
-
-      # fsel launcher float
-      for_window [app_id="foot" title="fsel"] floating enable, resize set 400 700
 
       # Environment
       exec export MOZ_ENABLE_WAYLAND=1

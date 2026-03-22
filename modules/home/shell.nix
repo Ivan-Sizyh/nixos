@@ -75,7 +75,6 @@
         # NixOS rebuild
         nrs() {
           nh os switch ~/nixos
-          fsel --refresh-cache
         }
 
         nrsf() {

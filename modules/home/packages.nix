@@ -1,9 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  home.packages = [
-    inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ] ++ (with pkgs; [
+  home.packages = with pkgs; [
     brightnessctl
     playerctl
     lazygit
@@ -30,5 +28,5 @@
     sing-box
     openvpn
     networkmanager-openvpn
-  ]);
+  ];
 }

@@ -10,7 +10,6 @@
     ./fonts.nix
     ./waybar.nix
     ./volume-osd.nix
-    ./fsel.nix
-    ./menus
+./menus
   ];
 }

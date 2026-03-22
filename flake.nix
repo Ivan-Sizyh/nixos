@@ -9,15 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    fsel = {
-      url = "github:Mjoyufull/fsel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:
@@ -27,8 +18,7 @@
         specialArgs = { inherit inputs self; };
         modules = [
           ./hosts/nixos
-          inputs.nur.modules.nixos.default
-          inputs.home-manager.nixosModules.home-manager
+inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;

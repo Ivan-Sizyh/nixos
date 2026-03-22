@@ -1,20 +1,17 @@
 { config, lib, pkgs, ... }:
 
 let
-  dmenu = opts: cmd: pkgs.writeShellScript "dmenu-${cmd.name}" ''
-    choice=$(printf '${opts}' | fsel --dmenu --only-match)
-    [ -z "$choice" ] && exit 0
-    ${cmd.script}
-  '';
-
   dedupAndPoweroff = pkgs.writeShellScript "dedup-poweroff" ''
     sudo duperemove -dr --io-threads="$(nproc)" --hashfile=/var/cache/duperemove.db /
     systemctl poweroff
   '';
 
-  powerMenu = dmenu "dedup & poweroff\npoweroff\nreboot\nsuspend\nlock\nlogout" {
-    name = "power";
-    script = ''
+  powerMenu = pkgs.writeShellScript "power-menu" ''
+    echo -e "dedup & poweroff\npoweroff\nreboot\nsuspend\nlock\nlogout" | while IFS= read -r item; do
+      echo "$item"
+    done
+    PS3="choice: "
+    select choice in "dedup & poweroff" "poweroff" "reboot" "suspend" "lock" "logout"; do
       case "$choice" in
         "dedup & poweroff") ${dedupAndPoweroff} ;;
         poweroff) systemctl poweroff ;;
@@ -23,11 +20,12 @@ let
         lock)     swaymsg input type:keyboard xkb_switch_layout 0 && swaylock ;;
         logout)   swaymsg exit ;;
       esac
-    '';
-  };
+      break
+    done
+  '';
 in
 {
   _module.args.menus = {
-    power = "foot --title fsel -e ${powerMenu}";
+    power = "foot -e ${powerMenu}";
   };
 }
